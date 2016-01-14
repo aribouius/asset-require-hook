@@ -1,7 +1,7 @@
 {
   "name": "asset-require-hook",
   "version": "1.0.0",
-  "description": "A require hook to load assets server side",
+  "description": "A require hook to load assets in runtime",
   "engines": {
     "node": ">=0.12"
   },
@@ -30,18 +30,21 @@
     "name": "Ari Bouius",
     "email": "aribouius@gmail.com"
   },
-  "homepage": "https://github.com/abouius/asset-require-hook",
+  "homepage": "https://github.com/aribouius/asset-require-hook",
   "repository": {
     "type": "git",
-    "url": "https://github.com/abouius/asset-require-hook.git"
+    "url": "https://github.com/aribouius/asset-require-hook.git"
   },
   "bugs": {
-    "url": "https://github.com/abouius/asset-require-hook/issues"
+    "url": "https://github.com/aribouius/asset-require-hook/issues"
   },
   "keywords": [
     "asset",
     "assets",
     "require",
     "hook"
+  ],
+  "pre-commit": [
+    "test"
   ]
 }
