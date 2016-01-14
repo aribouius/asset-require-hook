@@ -1,6 +1,6 @@
 {
   "name": "asset-require-hook",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A require hook to load assets in runtime",
   "engines": {
     "node": ">=0.12"
