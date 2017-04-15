@@ -1,4 +1,4 @@
-import hook from '..'
+import hook from '../src'
 import assert from 'assert'
 import assign from 'lodash.assign'
 
@@ -19,8 +19,18 @@ describe('asset-require-hook', function() {
   })
 
   it('accepts a `name` parameter with template placeholders', () => {
-    let name = prepare({ name: '[name]-[hash].[ext]' })
+    const name = prepare({ name: '[name]-[hash].[ext]' })
     assert.equal(name, 'file-2b54866f5a487761c94e6ad634b7bf1d.txt')
+  })
+
+  it('supports a string `publicPath` option', () => {
+    const name = prepare({ name: '[name].[ext]', publicPath: '/foo/' })
+    assert.equal(name, '/foo/file.txt')
+  })
+
+  it('supports a function `publicPath` option', () => {
+    const name = prepare({ name: '[name].[ext]', publicPath: str => `/bar/${str}` })
+    assert.equal(name, '/bar/file.txt')
   })
 
   context('when a `limit` parameter is provided', () => {
