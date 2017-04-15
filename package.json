@@ -1,6 +1,6 @@
 {
   "name": "asset-require-hook",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A require hook for importing asset files during runtime",
   "engines": {
     "node": ">=0.12"
