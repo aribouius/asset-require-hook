@@ -4,11 +4,11 @@ import assign from 'lodash.assign'
 
 function prepare(options) {
   hook(assign({extensions: ['.txt']}, options))
-  return require('./file.txt')
+  return require('./assets/file.txt')
 }
 
 function reset() {
-  delete require.cache[require.resolve('./file.txt')]
+  delete require.cache[require.resolve('./assets/file.txt')]
 }
 
 describe('asset-require-hook', function() {
@@ -31,6 +31,11 @@ describe('asset-require-hook', function() {
   it('supports a function `publicPath` option', () => {
     const name = prepare({ name: '[name].[ext]', publicPath: str => `/bar/${str}` })
     assert.equal(name, '/bar/file.txt')
+  })
+
+  it('supports a `regExp` option', () => {
+    const name = prepare({ name: '[1]?[hash]', regExp: '\\btest/(.+)' })
+    assert.equal(name, 'assets/file.txt?2b54866f5a487761c94e6ad634b7bf1d')
   })
 
   context('when a `limit` parameter is provided', () => {

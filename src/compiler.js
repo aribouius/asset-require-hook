@@ -4,7 +4,7 @@ import assign from 'lodash.assign'
 
 export default function compiler(name, options) {
   return function compile(file) {
-    const { limit, publicPath, mimetype } = options
+    const { limit, publicPath, mimetype, regExp } = options
     const content = readFileSync(file)
 
     if (limit !== undefined) {
@@ -20,6 +20,7 @@ export default function compiler(name, options) {
     }
 
     let result = interpolateName(context, name, {
+      regExp: regExp,
       content: content,
     })
 
