@@ -22,7 +22,7 @@ require('asset-require-hook')({
 // const image = require('./icon.jpg');
 ```
 
-The require hook accepts the same parameters as the `file-loader`.
+The require hook accepts the same parameters as the `file-loader` plus `publicPath` and `regExp`.
 ```javascript
 require('asset-require-hook')({
   extensions: ['jpg'],
