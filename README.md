@@ -26,7 +26,9 @@ The require hook accepts the same parameters as the `file-loader`.
 ```javascript
 require('asset-require-hook')({
   extensions: ['jpg'],
-  name: '[hash].[ext]'
+  name: '[hash].[ext]',
+  publicPath: '/dist/',
+  regExp: '\\mySpecificFilename/(.+)' 
 })
 ```
 
