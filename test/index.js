@@ -1,9 +1,9 @@
-import hook from '../src'
 import assert from 'assert'
 import assign from 'lodash.assign'
+import hook from '../src'
 
 function prepare(options) {
-  hook(assign({extensions: ['.txt']}, options))
+  hook(assign({ extensions: ['.txt'] }, options))
   return require('./assets/file.txt')
 }
 
@@ -11,16 +11,16 @@ function reset() {
   delete require.cache[require.resolve('./assets/file.txt')]
 }
 
-describe('asset-require-hook', function() {
+describe('asset-require-hook', function () {
   afterEach(() => reset())
 
-  it('returns the MD5 hash of the file\'s content by default', () => {
-    assert.equal(prepare(), '2b54866f5a487761c94e6ad634b7bf1d.txt')
+  it('returns the xxhash64 hash of the file\'s content by default', () => {
+    assert.equal(prepare(), '5bdcccdad77a28b0.txt')
   })
 
   it('accepts a `name` parameter with template placeholders', () => {
     const name = prepare({ name: '[name]-[hash].[ext]' })
-    assert.equal(name, 'file-2b54866f5a487761c94e6ad634b7bf1d.txt')
+    assert.equal(name, 'file-5bdcccdad77a28b0.txt')
   })
 
   it('supports a string `publicPath` option', () => {
@@ -35,7 +35,7 @@ describe('asset-require-hook', function() {
 
   it('supports a `regExp` option', () => {
     const name = prepare({ name: '[1]?[hash]', regExp: '\\btest/(.+)' })
-    assert.equal(name, 'assets/file.txt?2b54866f5a487761c94e6ad634b7bf1d')
+    assert.equal(name, 'assets/file.txt?5bdcccdad77a28b0')
   })
 
   context('when a `limit` parameter is provided', () => {
@@ -48,7 +48,7 @@ describe('asset-require-hook', function() {
     })
 
     it('does not return a data url if file size exceeds limit', () => {
-      assert.equal(prepare({ limit: 3 }), '2b54866f5a487761c94e6ad634b7bf1d.txt')
+      assert.equal(prepare({ limit: 3 }), '5bdcccdad77a28b0.txt')
     })
 
     it('accepts a `mimetype` parameter', () => {
